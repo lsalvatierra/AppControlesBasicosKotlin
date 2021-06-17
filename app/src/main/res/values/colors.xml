@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="snackbarerror">#FF0000</color>
+    <color name="snackbarsuccess">#096706</color>
 </resources>

@@ -8,6 +8,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".commom.MiApp"
         android:theme="@style/Theme.AppControlesBasicosKotlin">
         <activity android:name=".ListaActivity"></activity>
         <activity android:name=".MainActivity">

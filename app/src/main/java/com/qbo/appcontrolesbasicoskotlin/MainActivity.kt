@@ -8,6 +8,8 @@ import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.google.android.material.snackbar.Snackbar
+import com.qbo.appcontrolesbasicoskotlin.commom.AppMensaje
+import com.qbo.appcontrolesbasicoskotlin.commom.TipoMensaje
 import com.qbo.appcontrolesbasicoskotlin.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener,
@@ -90,13 +92,13 @@ class MainActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener,
         TODO("Not yet implemented")
     }
 
-    override fun onClick(v: View?) {
-        if (v!! is CheckBox) {
-            agregarQuitarPreferenciaSeleccionadas(v!!)
+    override fun onClick(v: View) {
+        if (v is CheckBox) {
+            agregarQuitarPreferenciaSeleccionadas(v)
         }else{
-            when(v!!.id){
+            when(v.id){
                 R.id.btnlistar -> irListaPersonas()
-                R.id.btnregistrar -> registrarPersona(v!!)
+                R.id.btnregistrar -> registrarPersona()
             }
         }
     }
@@ -113,8 +115,8 @@ class MainActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener,
         }
         startActivity(intentlista)
     }
-    fun registrarPersona(vista: View){
-        if(validarFormulario(vista)){
+    private fun registrarPersona(){
+        if(validarFormulario()){
             var infousuario = binding.etnombre.text.toString() + " " +
                     binding.etapellido.text.toString() + " " +
                     obtenerGeneroSeleccinado() + " " +
@@ -122,31 +124,35 @@ class MainActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener,
                     estadocivil + " " +
                     binding.swemail.isChecked
             listausuarios.add(infousuario)
+            AppMensaje.enviarMensaje(binding.root,
+                getString(R.string.msjregistrocorrecto),
+                TipoMensaje.SUCCESSFULL
+            )
             setearControles()
         }
     }
     //8.
-    fun validarFormulario(vista: View): Boolean {
+    fun validarFormulario(): Boolean {
         var respuesta = false
         if(!validarNombreApellido()){
-            enviarMensajeError(
-                vista,
-                getString(R.string.errorNombreApellido)
+            AppMensaje.enviarMensaje(binding.root,
+                getString(R.string.errorNombreApellido),
+                TipoMensaje.ERROR
             )
         }else if(!validarGenero()){
-            enviarMensajeError(
-                vista,
-                "Seleccione un género"
+            AppMensaje.enviarMensaje(binding.root,
+                "Seleccione un género",
+                TipoMensaje.ERROR
             )
         } else if(!validarEstadoCivil()){
-            enviarMensajeError(
-                vista,
-                "Seleccione un estado civil"
+            AppMensaje.enviarMensaje(binding.root,
+                "Seleccione un estado civil",
+                TipoMensaje.ERROR
             )
         } else if(!validarPreferencias()){
-            enviarMensajeError(
-                vista,
-                "Seleccione una preferencia"
+            AppMensaje.enviarMensaje(binding.root,
+                "Seleccione una preferencia",
+                TipoMensaje.ERROR
             )
         }  else{
             respuesta = true
@@ -186,7 +192,6 @@ class MainActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener,
             binding.etnombre.requestFocus()
             respuesta = false
         } else if(binding.etapellido.text.toString().trim().isEmpty()){
-            binding.etapellido.isFocusable = true
             binding.etapellido.isFocusableInTouchMode = true
             binding.etapellido.requestFocus()
             respuesta = false
@@ -207,12 +212,5 @@ class MainActivity : AppCompatActivity() , AdapterView.OnItemSelectedListener,
         binding.etnombre.requestFocus()
         binding.spestadocivil.setSelection(0)
     }
-    //1.
-    fun enviarMensajeError(vista: View, mensajeError: String){
-        val snackbar = Snackbar.make(vista, mensajeError, Snackbar.LENGTH_LONG)
-        val snackBarView: View = snackbar.view
-        snackBarView.setBackgroundColor(ContextCompat.getColor(this,
-            R.color.snackbarerror))
-        snackbar.show()
-    }
+
 }
