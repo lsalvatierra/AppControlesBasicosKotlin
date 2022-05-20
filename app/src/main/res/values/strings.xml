@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">AppControlesBasicosKotlin</string>
+    <string name="valtvtitulo">AUTENTICACIÓN KOTLIN</string>
+    <string name="valetusuario">Ingrese su usuario</string>
+    <string name="valetpassword">Ingrese su password</string>
+    <string name="valbtnlogin">Ingresar</string>
+    <string name="valtvtituloregistro">REGISTRO DE PERSONA</string>
+    <string name="valetnombre">Ingrese su nombre</string>
+    <string name="valetapellido">Ingrese su apellido</string>
+    <string name="valtvgenero">Seleccione su género</string>
+    <string name="valrbtnmasculino">Masculino</string>
+    <string name="valrbtnfemenino">Femenino</string>
+    <string name="valtvpreferencias">Seleccione sus preferencias</string>
+    <string name="valchkdeporte">Deporte</string>
+    <string name="valchkdibujo">Dibujo y arte</string>
+    <string name="chkotros">Otra preferencia</string>
+    <string name="swemail">¿Notificar por email?</string>
+    <string name="valetemail">Ingrese su email</string>
+    <string name="valbtnregistrar">Registrar Persona</string>
+    <string name="valbtnlistar">Listar Personas</string>
+    <string name="errordato">Información obligatoria</string>
+    <string name="valtvtitulolista">LISTA DE PERSONAS</string>
+    <string name="errorNombreApellido">Ingrese su nombre y apellido</string>
+    <string name="msjregistrocorrecto">Persona registrada correctamente</string>
+</resources>
